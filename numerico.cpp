@@ -18,7 +18,7 @@ Numerico::Numerico(QWidget *parent)
   ui->objCurrentCard->setReadOnly(true);
   ui->objHistory->setReadOnly(true);
 
-  this->setWindowIcon(QIcon("/home/goran/Numerico/icon.png"));
+  this->setWindowIcon(QIcon("/home/goran/GIT/Numerico/icon.png"));
 
   showInstructions();
   showHideElements(false);
