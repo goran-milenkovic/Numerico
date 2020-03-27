@@ -26,7 +26,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-using namespace std;
+
 
 namespace Ui {
 class Numerico;
@@ -67,7 +67,7 @@ private:
 
   void showInstructions();
 
-  bool isNumber(string check);
+  bool isNumber(std::string check);
 
   void showHideElements(bool show);
 
@@ -75,7 +75,7 @@ private:
 
   void centerAndResize(int width, int height);
 
-  string vectorCardToStringCard(vector<int> cardV);
+  std::string vectorCardToStringCard(std::vector<int> cardV);
 };
 
 #endif // NUMERICO_H

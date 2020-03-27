@@ -1,11 +1,9 @@
 #include "numerico.h"
 #include "ui_numerico.h"
 
-using namespace std;
-
-static vector<vector<int>> vectorCards;
-static vector<string> stringCards;
-static vector<vector<int>> foundNotFound(2);
+static std::vector<std::vector<int>> vectorCards;
+static std::vector<std::string> stringCards;
+static std::vector<std::vector<int>> foundNotFound(2);
 static unsigned long currentCard = 0;
 static int answer = 0;
 
@@ -97,7 +95,7 @@ void Numerico::on_objRadioFound_clicked() {
 
 void Numerico::on_objRadioNotFound_clicked() { endOrNextGame(); }
 
-string Numerico::vectorCardToStringCard(vector<int> cardV) {
+std::string Numerico::vectorCardToStringCard(std::vector<int> cardV) {
   std::stringstream card;
   std::copy(cardV.begin() + 1, cardV.end(),
             std::ostream_iterator<int>(card, " "));
@@ -111,7 +109,7 @@ void Numerico::centerAndResize(int width, int height) {
                           QGuiApplication::screens().first()->geometry()));
 }
 
-bool Numerico::isNumber(string check) {
+bool Numerico::isNumber(std::string check) {
   std::regex e("[1-9][0-9]*");
   if (std::regex_match(check, e))
     return true;
@@ -165,7 +163,7 @@ void Numerico::nextTable() {
 
 void Numerico::creator(int upperRangeLimit) {
   const auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-  vector<int> currentCard;
+  std::vector<int> currentCard;
   int i, j, k, degreeCounter = 1;
   for (i = 1; i <= upperRangeLimit; i = (1 << degreeCounter), degreeCounter++) {
     currentCard.push_back(i);
@@ -187,7 +185,7 @@ void Numerico::creator(int upperRangeLimit) {
 void Numerico::correctTable() {
   for (unsigned long i = 0; i < vectorCards.size(); i++) {
     stringCards.push_back(vectorCardToStringCard(vectorCards[i]));
-    stringCards[i].insert(0, "Card Number " + to_string(i + 1) + ": ");
+    stringCards[i].insert(0, "Card Number " + std::to_string(i + 1) + ": ");
     stringCards[i].insert(stringCards[i].size(), "\n");
   }
 }
@@ -212,7 +210,7 @@ void Numerico::initUpperObjs() {
   ui->objLabelCardsNumber->setText(QString::fromStdString(
       "               "
       "You will be shown " +
-      to_string(vectorCards.size()) + " cards with numbers"));
+      std::to_string(vectorCards.size()) + " cards with numbers"));
   ui->objCurrentCard->setText(QString::fromStdString(stringCards[currentCard]));
 }
 
